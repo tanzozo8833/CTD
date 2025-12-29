@@ -1,0 +1,89 @@
+(* Undeclared identifier *)
+
+PROGRAM UndeclaredTest;
+VAR
+  a : INTEGER;
+BEGIN
+  a := 10;
+  x := a + 5; 
+END.
+
+(* Undeclared const *)
+Program Example5; (* Example 1 *)
+
+type t = char;
+function f(i : integer):char;
+const b = c;
+type a = array(.5.) of t;
+begin
+end;
+Begin
+End. (* Example 1 *)
+
+(* Undeclared type *)
+
+Program Example6;
+    (* t1 *)
+   Type t1 = array(. 10 .) of integer;
+   Var v1 : Integer;
+       v2 : Array(. 10 .) of t1;
+
+   procedure p(v1 : integer);
+     const c1 = 'a';
+           c3 = 10;
+     type t1 = integer;
+          t2 = array(. 10 .) of t1;
+     var v2 : t2;
+         v3 : char;
+     begin
+	v3 := 'a';
+        v1 := f(c3,v3);
+     end;
+
+Begin
+     call p(c1);
+End.
+
+(* Undeclared variable *)
+
+PROGRAM UndeclaredVarTest;
+CONST c = 10;
+BEGIN
+  FOR i := 1 TO c DO
+    CALL WriteI(i);
+END.
+
+(* Undeclared Function *)
+
+BEGIN
+  Var x : Integer;
+  x := TinhTong(10, 20);
+END.
+
+(* Undeclared procedure *)
+Program Example6;
+   procedure p(v1 : integer);
+     const c1 = 'a';
+           c3 = 10;
+     type t1 = integer;
+          t2 = array(. 10 .) of t1;
+     var v2 : t2;
+         v3 : char;
+     begin
+	v3 := 'a';
+     end;
+
+Begin
+     call p1(c1);
+End.
+
+(* Undeclared identifier *)
+
+PROGRAM UndeclaredTest;
+VAR a : INTEGER;
+    a : CHAR;
+
+BEGIN
+  a := 10;
+  x := a + 5; 
+END.
