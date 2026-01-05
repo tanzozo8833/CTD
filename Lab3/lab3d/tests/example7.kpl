@@ -1,0 +1,86 @@
+PROGRAM TestType;
+VAR 
+    i : INTEGER;
+    c : CHAR;
+BEGIN
+    i := 10;
+    c := 'A';
+    
+    (* LỖI 1: Gán Char cho Integer *)
+    i := c; 
+    
+    (* LỖI 2: Cộng Integer với Char *)
+    i := i + c;
+    
+    (* LỖI 3: Điều kiện trong IF khác kiểu *)
+    IF i > c THEN i := 0;
+END.
+
+
+PROGRAM TestArray;
+VAR 
+    A : ARRAY(. 10 .) OF INTEGER;
+    i : INTEGER;
+    c : CHAR;
+BEGIN
+    c := 'x';
+    
+    (* LỖI 1: Chỉ số mảng là Char, phải là Integer *)
+    A(. c .) := 5;
+    
+    (* LỖI 2: Sử dụng biến đơn như mảng *)
+    i(. 1 .) := 5;
+END.
+
+
+PROGRAM TestFuncProc;
+VAR 
+    result : INTEGER;
+
+(* Định nghĩa hàm Sum nhận 2 số nguyên *)
+FUNCTION Sum(x : INTEGER; y : INTEGER) : INTEGER;
+BEGIN
+    Sum := x + y;
+END;
+
+(* Định nghĩa thủ tục Print nhận 1 Char *)
+PROCEDURE Print(ch : CHAR);
+BEGIN
+END;
+
+BEGIN
+    (* LỖI 1: Gọi thiếu tham số *)
+    result := Sum(5);
+    
+    (* LỖI 2: Truyền sai kiểu (truyền Char vào chỗ cần Integer) *)
+    result := Sum(5, 'A');
+    
+    (* LỖI 3: Gọi thủ tục với sai kiểu tham số *)
+    CALL Print(100);
+END.
+
+PROGRAM TestVarParam;
+VAR 
+    x : INTEGER;
+
+(* Thủ tục Swap yêu cầu tham biến VAR, tức là phải truyền biến để thay đổi giá trị *)
+PROCEDURE Swap(VAR a : INTEGER; VAR b : INTEGER);
+VAR temp : INTEGER;
+BEGIN
+    temp := a;
+    a := b;
+    b := temp;
+END;
+
+BEGIN
+    x := 10;
+    
+    (* Hợp lệ *)
+    CALL Swap(x, x);
+    
+    (* LỖI: Truyền hằng số (10) vào tham số VAR *)
+    CALL Swap(x, 10);
+    
+    (* LỖI: Truyền biểu thức (x+1) vào tham số VAR *)
+    CALL Swap(x, x + 1);
+END.
